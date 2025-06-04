@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cervical Cancer Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="main-wrapper fade-in">
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='images/Cervical Website logo.png') }}" alt="Cervical Cancer Detection Logo" class="logo">
+
+        <!-- Main Heading -->
+        <h1>Cervical Cancer Detection System</h1>
+        <p class="tagline">Early Detection Saves Lives</p>
+
+        <!-- Introduction -->
+        <p class="intro">
+            Upload Pap Test cell images for accurate and fast cancer prediction.<br>
+            Our AI model helps doctors and patients make informed decisions earlier.
+        </p>
+
+        <!-- Upload Button as Link to Upload Page -->
+        <a href="{{ url_for('upload') }}" class="upload-btn">Upload Image</a>
+
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2025 Cervical Cancer AI Detection. All rights reserved.
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

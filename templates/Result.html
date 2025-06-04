@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result | Cervical Cancer Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="main-wrapper fade-in">
+
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='images/Cervical Website logo.png') }}" alt="Cervical Cancer Detection Logo" class="logo">
+
+        <!-- Heading -->
+        <h1>Prediction Result</h1>
+        <p class="tagline">Classification Outcome</p>
+
+        <!-- Dynamic Result Box -->
+        <div class="result-box">
+            <h2 class="result-label result-{{ predicted_class | lower }}">{{ predicted_class }}</h2>
+            <p class="confidence-score">Confidence Score: <strong>{{ '%.2f'|format(confidence) }}%</strong></p>
+            <p class="result-description">
+                {% if predicted_class == 'Dyskeratotic' %}
+                    Dyskeratotic Cells are abnormal squamous cells in the outer lining of the cervix that show premature or excessive hardening due to abnormal keratin production. These cells can appear in inflammatory conditions but may also indicate precancer or cancer. Further testing such as HPV testing and a biopsy is recommended.
+                {% elif predicted_class == 'Koilocytotic' %}
+                    Koilocytotic Cells are squamous cells with perinuclear halos or vacuoles, commonly indicating an HPV infection. These cells do not necessarily mean cancer but show an active HPV infection, which could lead to precancer or cancer over time.
+                {% elif predicted_class == 'Metaplastic' %}
+                    Metaplastic Cells are squamous cells that have transformed due to chronic irritation. Though usually benign, persistent changes could progress into cervical dysplasia, which requires monitoring.
+                {% elif predicted_class == 'Parabasal' %}
+                    Parabasal Cells are small, round cells found in the basal epithelium, commonly seen in low estrogen states (e.g., postpartum, postmenopausal). They are not typically cancerous.
+                {% elif predicted_class == 'Superficial' %}
+                    Superficial-Intermediate Cells are normal, mature squamous cells. Their presence indicates a healthy cervix. Abnormalities or absence may signal changes needing attention.
+                {% else %}
+                    No detailed information available for this class.
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Recommendations Section -->
+        <div class="recommendation">
+            <h3>Next Steps:</h3>
+            <ul>
+                <li>Consult your healthcare provider for further evaluation and testing.</li>
+                <li>Follow up with diagnostic procedures if recommended (e.g., colposcopy, biopsy).</li>
+                <li>Maintain regular cervical cancer screening as per medical guidelines.</li>
+            </ul>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <a href="{{ url_for('upload') }}" class="action-btn">Upload Another Image</a>
+            <a href="{{ url_for('index') }}" class="action-btn">Back to Home</a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2025 Cervical Cancer AI Detection. All rights reserved.
+        </footer>
+
+    </div>
+</div>
+
+</body>
+</html>

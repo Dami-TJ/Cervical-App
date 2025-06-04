@@ -1,0 +1,117 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2; /* Light gray background */
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Transparent Dark Grey Container */
+  .container {
+    background-color: rgba(50, 50, 50, 0.85); /* Dark grey with transparency */
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Optional: Adds blur behind container */
+  }
+  
+  /* Inner Wrapper for Content */
+  .main-wrapper {
+    text-align: center;
+    color: #ffffff; /* White text inside dark container */
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 1.5s ease forwards;
+  }
+  
+  /* Logo Styling */
+  .logo {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain; /* Ensures it scales properly */
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  /* Main Heading */
+  h1 {
+    font-size: 2.5em;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  /* Subheading */
+  .tagline {
+    font-size: 1.3em;
+    color: #cccccc;
+    margin-bottom: 30px;
+  }
+  
+  /* Intro Text */
+  .intro {
+    font-size: 1.2em;
+    color: #eeeeee;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  
+  /* Upload Button */
+  .upload-btn {
+    background-color: #008080;
+    color: #ffffff;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.4);
+  }
+  
+  .upload-btn:hover {
+    background-color: #20B2AA;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(32, 178, 170, 0.4);
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #bbbbbb;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2em;
+    }
+  
+    .upload-btn {
+      padding: 12px 30px;
+      font-size: 1em;
+    }
+  }
+  

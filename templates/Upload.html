@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image - Cervical Cancer Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Style.css') }}">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="main-wrapper">
+
+            <!-- Logo -->
+            <img src="{{ url_for('static', filename='images/Cervical Website logo.png') }}" alt="Cervical Cancer AI Logo" class="logo">
+
+
+            <!-- Heading -->
+            <h1>Upload Your Pap Test Image</h1>
+            <p class="tagline">Cervical Cancer Detection</p>
+
+            <!-- Upload Form -->
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" class="upload-input" required>
+                <br><br>
+                <button type="submit" class="upload-btn">Upload & Analyze</button>
+            </form>
+
+            <!-- BACK TO HOME LINK -->
+    <a href="{{ url_for('index') }}" class="upload-btn">← Back to Home</a>
+
+        </div>
+    </div>
+
+</body>
+</html>
