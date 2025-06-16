@@ -1,6 +1,9 @@
-tensorflow==2.15.0
+Flask
+tensorflow
 numpy
 pandas
 matplotlib
 scikit-learn
 Pillow
+gdown
+gunicorn
