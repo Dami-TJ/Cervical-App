@@ -1,22 +1,29 @@
+import os
+import numpy as np
 from flask import Flask, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.efficientnet import preprocess_input
-import numpy as np
-import os
-from werkzeug.utils import secure_filename
+import gdown
 
-# Initialize Flask app
+# ---- Step 1: Download model from Google Drive if not present ----
+model_path = 'EfficientNet-cervical.keras'
+if not os.path.exists(model_path):
+    file_id = '1TupwkSxykApCVHyZp-geuXlzncbO_LT_'
+    gdown.download(f'https://drive.google.com/uc?id={file_id}', model_path, quiet=False)
+
+# ---- Step 2: Initialize Flask app ----
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
-import os
-print("Current working directory:", os.getcwd())
 
-# Load trained model
-model = load_model('EfficientNet-cervical(fold).keras')
+# ---- Step 3: Load trained model ----
+model = load_model(model_path)
 
-#  Manually define class labels based on your training labels
+# ---- Step 4: Define class labels ----
 class_names = ['Dyskeratotic', 'Koilocytotic', 'Metaplastic', 'Parabasal', 'Superficial-Intermediate']
+
+# ---- Step 5: Routes ----
 
 # Home page
 @app.route('/')
@@ -33,7 +40,7 @@ def upload():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # Preprocess image for EfficientNet
+            # Preprocess image
             img = image.load_img(filepath, target_size=(224, 224))
             img_array = image.img_to_array(img)
             img_array = np.expand_dims(img_array, axis=0)
@@ -48,17 +55,17 @@ def upload():
             return render_template('result.html',
                                    filename=filename,
                                    predicted_class=predicted_class,
-                                   confidence=confidence)
+                                   confidence=round(confidence, 2))
 
         return redirect(request.url)
 
     return render_template('upload.html')
 
-# Show uploaded image
+# Serve uploaded image
 @app.route('/display/<filename>')
 def display_image(filename):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
-# Run app
+# ---- Step 6: Run locally ----
 if __name__ == '__main__':
     app.run(debug=True)
